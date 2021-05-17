@@ -3,12 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './exercise';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './modules'; // 알아서 index.js를 불러온다.(index.js에서 내보내줘서)
+
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+const store = createStore(rootReducer, composeWithDevTools());
+console.log(store);
+console.log(store.getState());
 
 ReactDOM.render(
-    <React.StrictMode>
+    <Provider store={store}>
         <App />
-    </React.StrictMode>,
+    </Provider>,
     document.getElementById('root'),
 );
 
